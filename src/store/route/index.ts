@@ -1,9 +1,10 @@
 import { defineStore } from "pinia"
-import { ref, watch } from "vue"
+import { ref } from "vue"
 import pinia from ".."
-import router from "@/router"
+import { routes } from "@/router"
 import { transformRoute } from "./tools"
 import type { RouteRecordRaw } from "vue-router"
+
 export const useRouteStore = defineStore("route", () => {
   const displayRoutes = ref<RouteRecordRaw[]>([])
   let currentRouteName: string | null = null
@@ -14,14 +15,18 @@ export const useRouteStore = defineStore("route", () => {
     currentRouteName = name
   }
   async function generateDisplayRoutes() {
-    displayRoutes.value = await transformRoute.run(router.getRoutes())
+    displayRoutes.value = await transformRoute.run(routes)
   }
-
+  function getcurrentRoute() {
+    return currentRouteName
+  }
   return {
     displayRoutes,
     setCurrent,
     isCurrent,
     generateDisplayRoutes,
+    getcurrentRoute,
+    // currentRouteName,
   }
 })
 

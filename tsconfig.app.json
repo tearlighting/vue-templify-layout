@@ -14,7 +14,8 @@
     "paths": {
       "@/*": ["src/*"],
       "*": ["types/*"]
-    }
+    },
+    "types": ["unplugin-icons/types/vue3"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts"]
 }

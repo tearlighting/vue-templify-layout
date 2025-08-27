@@ -2,6 +2,7 @@ import type { RouteRecordRaw, RouteMeta } from "vue-router"
 import { createTransformMiddleWare } from "@/utils"
 import { EPemission } from "@/constants"
 import { useUserStoreHook } from "../user"
+import { storeToRefs } from "pinia"
 
 function filterHiddenRoutes(routes: RouteRecordRaw[]): RouteRecordRaw[] {
   const res = []
@@ -12,6 +13,10 @@ function filterHiddenRoutes(routes: RouteRecordRaw[]): RouteRecordRaw[] {
         currentRoute.children = filterHiddenRoutes(route.children)
       }
       res.push(currentRoute)
+    } else {
+      if (route.children?.length) {
+        res.push(...filterHiddenRoutes(route.children))
+      }
     }
   }
   return res
@@ -32,8 +37,8 @@ function filterAccessRoutes(routes: RouteRecordRaw[], pemission: EPemission): Ro
 }
 
 function filterAccessRoutesWithUserInfo(routes: RouteRecordRaw[]) {
-  const { userInfo } = useUserStoreHook()
-  const pemission = userInfo?.role ?? EPemission.visitor
+  const { userInfo } = storeToRefs(useUserStoreHook())
+  const pemission = userInfo.value.role
   return filterAccessRoutes(routes, pemission)
 }
 

@@ -1,3 +1,16 @@
+<script setup lang="ts">
+interface ISlots {
+  left: any
+  centerLine1: any
+  centerLine2: any
+  centerLine3: any
+  right: any
+  default: any
+}
+
+defineSlots<ISlots>()
+</script>
+
 <template>
   <div class="flex h-screen" role="presentation" data-section="layout-root">
     <!-- 左侧栏 -->

@@ -7,7 +7,6 @@ import { useRouteStore } from "./store/route"
 const app = createApp(App)
 addPlugins(app)
 app.mount("#app")
-
 const userStore = useUserStoreHook()
 const routeStore = useRouteStore()
 

@@ -1,4 +1,4 @@
-import type { IAddPlugin } from "types/plugin"
+import type { IAddPlugin } from "plugin"
 import { createI18n } from "vue-i18n"
 
 const zh = {
@@ -14,6 +14,7 @@ const jp = {
 export const add18n: IAddPlugin = (app) => {
   const i18n = createI18n({
     locale: "zh",
+    legacy: false,
     messages: {
       zh,
       en,
