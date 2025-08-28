@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import PanelContainer from "@/components/PanelContainer/index.vue"
 import Aside from "@/components/Aside/index.vue"
+import NavBar from "@/components/NavBar/index.vue"
 </script>
 
 <template>
   <PanelContainer>
     <template v-slot:left>
       <Aside></Aside>
+    </template>
+    <template v-slot:centerLine1>
+      <NavBar></NavBar>
+    </template>
+    <template v-slot:centerLine2>
+      <div class="bg-primary text-text border-border">test</div>
     </template>
     <RouterView></RouterView>
   </PanelContainer>

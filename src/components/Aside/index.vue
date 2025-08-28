@@ -14,15 +14,14 @@ const { menuController } = useMenuStore()
 
 const menuRef = ref<MenuInstance>()
 onMounted(() => {
-  const { getcurrentRoute } = routeStore
-  const currentRouteName = getcurrentRoute()
+  const { currentRouteName } = routeStore
   currentRouteName && menuRef.value?.updateActiveIndex(currentRouteName)
 })
 </script>
 
 <template>
   <div class="md: w-60 h-full">
-    <el-menu ref="menuRef" :collapse="menuController.isCollapsed()" :hidden="menuController.isHidden()">
+    <el-menu ref="menuRef" :collapse="menuController.isCollapsed()" :hidden="menuController.isHidden()" @select="routeStore.setCurrent">
       <template v-for="item in displayRoutes">
         <menu-item :routes="item" />
       </template>

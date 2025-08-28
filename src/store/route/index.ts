@@ -7,26 +7,23 @@ import type { RouteRecordRaw } from "vue-router"
 
 export const useRouteStore = defineStore("route", () => {
   const displayRoutes = ref<RouteRecordRaw[]>([])
-  let currentRouteName: string | null = null
+  let currentRouteName = ref<string | null>(null)
   function isCurrent(name: string) {
-    return name === currentRouteName
+    return name === currentRouteName.value
   }
   function setCurrent(name: string) {
-    currentRouteName = name
+    currentRouteName.value = name
   }
   async function generateDisplayRoutes() {
     displayRoutes.value = await transformRoute.run(routes)
   }
-  function getcurrentRoute() {
-    return currentRouteName
-  }
+
   return {
     displayRoutes,
     setCurrent,
     isCurrent,
     generateDisplayRoutes,
-    getcurrentRoute,
-    // currentRouteName,
+    currentRouteName,
   }
 })
 

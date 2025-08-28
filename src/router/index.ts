@@ -75,6 +75,7 @@ export const routes: RouteRecordRaw[] = [
         meta: {
           title: "router.menu1",
           roles: [EPemission.visitor],
+          icon: EIcons.MenuOpen,
         },
         children: [
           {
