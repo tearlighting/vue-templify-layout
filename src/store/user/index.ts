@@ -2,7 +2,7 @@ import { ELoginStatus, EPemission } from "@/constants"
 import { defineStore } from "pinia"
 import type { IUserInfo } from "user"
 import { ref, unref } from "vue"
-import pinia from ".."
+import pinia from "../store"
 
 export const useUserStore = defineStore("userStore", () => {
   const userInfo = ref<IUserInfo>({

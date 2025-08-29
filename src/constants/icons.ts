@@ -7,4 +7,5 @@ export const enum EIcons {
   Fullscreen = "mdi-light:format-indent-increase",
   Locale = "mdi-light:format-indent-increase",
   Theme = "mdi-light:format-indent-increase",
+  Close = "mdi-light:format-indent-increase",
 }

@@ -1,15 +1,16 @@
 import { defineStore } from "pinia"
 import { ref, computed } from "vue"
 import router from "@/router"
+import pinia from "../store"
 
 export const useTagViewStore = defineStore("tagView", () => {
   /**
    * 存的是route的name
    */
   const tags = ref(new Set<string>())
-  let currentTagName: string | null = null
+  let currentTagName = ref<string | null>(null)
   const isCurrent = (name: string) => {
-    return currentTagName === name
+    return currentTagName.value === name
   }
   function addTag(name: string) {
     tags.value.add(name)
@@ -41,7 +42,9 @@ export const useTagViewStore = defineStore("tagView", () => {
     }
   }
   function setCurrent(payload: string) {
-    currentTagName = payload
+    currentTagName.value = payload
+    console.log(currentTagName.value)
+
     addTag(payload)
   }
 
@@ -55,3 +58,5 @@ export const useTagViewStore = defineStore("tagView", () => {
     setCurrent,
   }
 })
+
+export const useTagViewStoreHook = () => useTagViewStore(pinia)

@@ -1,8 +1,6 @@
 import type { Palette, ThemeVars } from "theme"
 
 export function applyToDom(vars: ThemeVars, root: HTMLElement = document.documentElement) {
-  console.log(root)
-
   for (const [k, v] of Object.entries(vars)) {
     root.style.setProperty(k, v)
   }

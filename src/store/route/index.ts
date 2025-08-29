@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 import { ref } from "vue"
-import pinia from ".."
+import pinia from "../store"
 import { routes } from "@/router"
 import { transformRoute } from "./tools"
 import type { RouteRecordRaw } from "vue-router"

@@ -1,2 +1,4 @@
 export * from "./middleware"
 export * from "./tree"
+export * from "./theme"
+export * from "./route"

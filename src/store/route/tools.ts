@@ -1,4 +1,4 @@
-import type { RouteRecordRaw, RouteMeta } from "vue-router"
+import type { RouteRecordRaw } from "vue-router"
 import { createTransformMiddleWare } from "@/utils"
 import { EPemission } from "@/constants"
 import { useUserStoreHook } from "../user"

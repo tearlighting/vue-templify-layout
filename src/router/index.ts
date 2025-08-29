@@ -2,7 +2,6 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 import DefaultLayout from "@/layout/DefaultLayout.vue"
 import Test from "@/components/test/index.vue"
 import { EPemission } from "@/constants"
-import { setRouterBehavior } from "./behavior"
 import { EIcons } from "@/constants/icons"
 
 /**
@@ -69,7 +68,7 @@ export const routes: RouteRecordRaw[] = [
     },
     children: [
       {
-        path: "https://element-plus-admin-doc.cn/",
+        path: "Menu1",
         name: "Menu1",
         redirect: "/level/menu1/menu1-1/menu1-1-1",
         meta: {
@@ -91,7 +90,7 @@ export const routes: RouteRecordRaw[] = [
               {
                 path: "menu1-1-1",
                 name: "Menu111",
-                redirect: "/level/menu1/menu1-1/menu1-1-1",
+                components: Test,
                 meta: {
                   title: "router.menu111",
                   roles: [EPemission.visitor],
@@ -102,7 +101,7 @@ export const routes: RouteRecordRaw[] = [
           {
             path: "menu1-2",
             name: "Menu12",
-            redirect: "/level/menu1/menu1-1/menu1-1-1",
+            components: Test,
             meta: {
               title: "router.menu12",
               roles: [EPemission.visitor],
@@ -119,5 +118,4 @@ const router = createRouter({
   routes,
 })
 
-setRouterBehavior(router, "/")
 export default router

@@ -1,4 +1,4 @@
-import "vue-router"
+import { NavigationGuardWithThis } from "vue-router"
 import { EPemission } from "@/store/pemission"
 import type { EIcons } from "@/constants/icons"
 
@@ -21,4 +21,8 @@ interface ITemplifyRouteMeta extends TTemplifyRouteMeta {}
 declare module "vue-router" {
   interface RouteMeta extends BaseMeta {}
   const r: RouteMeta = {}
+}
+
+export interface IRouteGuarder {
+  (routerPayload: Parameters<NavigationGuardWithThis<any>>, next: () => Promise<void>): void | Promise<void>
 }

@@ -24,6 +24,8 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
+    Tag: typeof import('./src/components/TagViews/Tag.vue')['default']
+    TagViews: typeof import('./src/components/TagViews/index.vue')['default']
     Test: typeof import('./src/components/test/index.vue')['default']
     ThemeSwitch: typeof import('./src/components/NavBar/ThemeSwitch.vue')['default']
     UserAvatar: typeof import('./src/components/NavBar/UserAvatar.vue')['default']

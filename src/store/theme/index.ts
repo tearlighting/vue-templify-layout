@@ -3,7 +3,7 @@ import { defineStore } from "pinia"
 import { darkPalette, lightPalette } from "@/constants"
 import { applyToDom, generateTheme } from "@/utils/theme"
 import { ref } from "vue"
-import pinia from ".."
+import pinia from "../store"
 export const useThemeStore = defineStore("theme", () => {
   const themes = {
     light: generateTheme(lightPalette),

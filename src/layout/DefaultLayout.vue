@@ -2,6 +2,7 @@
 import PanelContainer from "@/components/PanelContainer/index.vue"
 import Aside from "@/components/Aside/index.vue"
 import NavBar from "@/components/NavBar/index.vue"
+import TagViews from "@/components/TagViews/index.vue"
 </script>
 
 <template>
@@ -13,7 +14,7 @@ import NavBar from "@/components/NavBar/index.vue"
       <NavBar></NavBar>
     </template>
     <template v-slot:centerLine2>
-      <div class="bg-primary text-text border-border">test</div>
+      <TagViews></TagViews>
     </template>
     <RouterView></RouterView>
   </PanelContainer>

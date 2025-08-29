@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import { reactive } from "vue"
 import { createMenuController } from "./tools"
-import pinia from ".."
+import pinia from "../store"
 
 export const useMenuStore = defineStore("menu", () => {
   const menuController = reactive(createMenuController())
