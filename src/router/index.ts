@@ -1,8 +1,11 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 import DefaultLayout from "@/layout/DefaultLayout.vue"
-import Test from "@/components/test/index.vue"
+
 import { EPemission } from "@/constants"
 import { EIcons } from "@/constants/icons"
+import Dashboard from "@/views/dashboard/index.vue"
+import Menu12 from "@/views/menu/menu12/index.vue"
+import Menu111 from "@/views/menu/menu111/index.vue"
 
 /**
  * 设计的就是具名路由
@@ -12,8 +15,9 @@ export const routes: RouteRecordRaw[] = [
   {
     path: "/",
     redirect: {
-      name: "DashboardContainer",
+      name: "Dashboard",
     },
+    name: "Home",
     meta: {
       hidden: true,
       roles: [EPemission.visitor],
@@ -26,7 +30,7 @@ export const routes: RouteRecordRaw[] = [
       {
         name: "Login1",
         path,
-        components: Test,
+        components: Dashboard,
         meta: {
           roles: [EPemission.visitor],
           hidden: true,
@@ -46,7 +50,7 @@ export const routes: RouteRecordRaw[] = [
       {
         path: "",
         name: "Dashboard",
-        component: Test,
+        component: Dashboard,
 
         meta: {
           title: "Dashboard",
@@ -90,7 +94,7 @@ export const routes: RouteRecordRaw[] = [
               {
                 path: "menu1-1-1",
                 name: "Menu111",
-                components: Test,
+                component: Menu111,
                 meta: {
                   title: "router.menu111",
                   roles: [EPemission.visitor],
@@ -101,7 +105,7 @@ export const routes: RouteRecordRaw[] = [
           {
             path: "menu1-2",
             name: "Menu12",
-            components: Test,
+            component: Menu12,
             meta: {
               title: "router.menu12",
               roles: [EPemission.visitor],

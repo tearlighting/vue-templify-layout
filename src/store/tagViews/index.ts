@@ -13,38 +13,32 @@ export const useTagViewStore = defineStore("tagView", () => {
     return currentTagName.value === name
   }
   function addTag(name: string) {
+    console.log("add")
+
     tags.value.add(name)
   }
 
   function deleteTag(name: string) {
-    const idx = allTags.value.findIndex((tag) => tag === name)
+    const arr = allTags.value
+    const idx = arr.findIndex((tag) => tag === name)
     if (idx === -1) return
 
-    allTags.value.splice(idx, 1)
-    // 如果删的是当前路由
     if (isCurrent(name)) {
       let nextRoute: string | null = null
-      // 先尝试右边
-      if (allTags.value[idx]) {
-        nextRoute = allTags.value[idx]
+      if (arr[idx + 1]) {
+        nextRoute = arr[idx + 1]
+      } else if (arr[idx - 1]) {
+        nextRoute = arr[idx - 1]
+      } else {
+        nextRoute = "Home"
       }
-      // 否则尝试左边
-      else if (allTags.value[idx - 1]) {
-        nextRoute = allTags.value[idx - 1]
-      }
-      // 否则跳 fallback
-      else {
-        nextRoute = "/" // 固定首页
-      }
-      if (nextRoute) {
-        router.push({ path: nextRoute })
-      }
+      router.push({ name: nextRoute, force: true })
     }
+
+    tags.value.delete(name)
   }
   function setCurrent(payload: string) {
     currentTagName.value = payload
-    console.log(currentTagName.value)
-
     addTag(payload)
   }
 

@@ -6,6 +6,7 @@ import type { RouteLocationRaw } from "vue-router"
 export const createAuthGuard = <T extends ReturnType<typeof useUserStoreHook>, R extends RouteLocationRaw>(userStore: T, redirect: R) => {
   const authGuard: IRouteGuarder = async ([to, _, routerNext], next) => {
     const { roles } = to.meta
+
     if (userStore.hasPemission(roles)) {
       next()
       return

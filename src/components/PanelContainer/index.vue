@@ -14,7 +14,7 @@ defineSlots<ISlots>()
 <template>
   <div class="flex h-screen" role="presentation" data-section="layout-root">
     <!-- 左侧栏 -->
-    <aside class="w-fit bg-gray-800 flex-shrink-0" role="complementary" data-section="left">
+    <aside class="w-fit flex-shrink-0" role="complementary" data-section="left">
       <slot name="left" />
     </aside>
 

@@ -21,16 +21,16 @@ defineProps<ITagProps>()
   <div
     role="tag-container"
     @click="emit('click', $event)"
-    class="flex items-center justify-center gap-2 border border-card-border rounded-lg bg-card-bg text-text py-1.5 px-3 shadow-sm hover:shadow-md hover:bg-surface transition-all duration-200 ease-in-out cursor-pointer sm:py-2 sm:px-4 sm:gap-3"
+    class="flex items-center justify-center gap-1 px-2 py-1 rounded-sm border border-border bg-surface text-text md:text-sm shadow-sm cursor-pointer select-none hover:bg-bg hover:shadow transition-all duration-200 ease-in-out sm:px-2 sm:py-1 sm:text-base group/tag"
     :class="class"
   >
     <div role="tag-header" class="w-fit text-sm sm:text-base font-medium text-muted">
       <slot name="header"></slot>
     </div>
-    <div role="tag-content" class="flex-1 text-sm sm:text-base">
-      <slot>tag content</slot>
-    </div>
-    <div role="tag-footer" class="w-fit text-xs sm:text-sm text-primary">
+    <span role="tag-content" class="truncate font-medium max-w-[8rem] sm:max-w-[12rem]">
+      <slot>tag</slot>
+    </span>
+    <div role="tag-footer" class="w-fit text-xs sm:text-sm text-primary opacity-0 group-hover/tag:opacity-100 transition-all duration-75">
       <slot name="footer"></slot>
     </div>
   </div>

@@ -1,18 +1,23 @@
 import { defineStore } from "pinia"
-import { ref } from "vue"
+import { reactive, ref } from "vue"
 import pinia from "../store"
 import { routes } from "@/router"
 import { transformRoute } from "./tools"
-import type { RouteRecordRaw } from "vue-router"
+import type { RouteMeta, RouteRecordRaw } from "vue-router"
+import { getMeta } from "@/utils"
 
 export const useRouteStore = defineStore("route", () => {
   const displayRoutes = ref<RouteRecordRaw[]>([])
-  let currentRouteName = ref<string | null>(null)
+  const currentRoute = reactive({
+    name: null as string | null,
+    meta: null as RouteMeta | null,
+  })
   function isCurrent(name: string) {
-    return name === currentRouteName.value
+    return name === currentRoute.name
   }
   function setCurrent(name: string) {
-    currentRouteName.value = name
+    currentRoute.name = name
+    currentRoute.meta = getMeta(routes, currentRoute.name)!
   }
   async function generateDisplayRoutes() {
     displayRoutes.value = await transformRoute.run(routes)
@@ -23,7 +28,7 @@ export const useRouteStore = defineStore("route", () => {
     setCurrent,
     isCurrent,
     generateDisplayRoutes,
-    currentRouteName,
+    currentRoute,
   }
 })
 

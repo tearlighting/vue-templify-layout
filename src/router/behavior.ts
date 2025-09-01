@@ -14,7 +14,10 @@ export function setupRouteGuard<T extends IAllStoreProps>(stores: T) {
   const routerBeforeEachMiddleware = createFlowMiddleware<Parameters<NavigationGuardWithThis<any>>>()
     .use(isLoginGuard)
     .use(createAuthGuard(stores.userStore, { path: "/" }))
-    .use(changeRecactiveDataMiddleware.run.bind(changeRecactiveDataMiddleware))
+    .use((ctx, next) => {
+      changeRecactiveDataMiddleware.run(ctx)
+      next()
+    })
     .use(turn2PageGuard)
 
   router.beforeEach(async (...args) => await routerBeforeEachMiddleware.run(args))

@@ -3,6 +3,8 @@ import PanelContainer from "@/components/PanelContainer/index.vue"
 import Aside from "@/components/Aside/index.vue"
 import NavBar from "@/components/NavBar/index.vue"
 import TagViews from "@/components/TagViews/index.vue"
+import { useRouteStore } from "@/store"
+const { currentRoute } = useRouteStore()
 </script>
 
 <template>
@@ -16,6 +18,9 @@ import TagViews from "@/components/TagViews/index.vue"
     <template v-slot:centerLine2>
       <TagViews></TagViews>
     </template>
+    <KeepAlive v-if="currentRoute.meta?.keepAlive">
+      <RouterView></RouterView>
+    </KeepAlive>
     <RouterView></RouterView>
   </PanelContainer>
 </template>
