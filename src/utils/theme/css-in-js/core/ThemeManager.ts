@@ -1,7 +1,7 @@
 import { generateTheme } from "@/utils"
 import type { IThemeManager, Palette, ThemeVars } from "theme"
 
-export class ThemeManager<ThemeName extends string = string> implements IThemeManager<ThemeName> {
+export class ThemeManager<ThemeName extends string = never> implements IThemeManager<ThemeName> {
   private _themes: Record<ThemeName, ThemeVars> = {} as any
   private _current: ThemeName | null = null
   constructor(private _rootEl: HTMLElement = document.documentElement) {}

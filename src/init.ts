@@ -1,12 +1,12 @@
 import { watch } from "vue"
-import { useRouteStoreHook, useTagViewStoreHook, useThemeStoreHook, useUserStoreHook } from "./store"
+import { useRouteStoreHook, useTagViewStoreHook, themeManager, useUserStoreHook } from "./store"
 import { setupRouteGuard } from "./router/behavior"
 
 export interface IAllStoreProps {
   userStore: ReturnType<typeof useUserStoreHook>
   routeStore: ReturnType<typeof useRouteStoreHook>
   tagViewStore: ReturnType<typeof useTagViewStoreHook>
-  themeStore: ReturnType<typeof useThemeStoreHook>
+  themeStore: typeof themeManager
 }
 /**
  * 注入主题
@@ -34,7 +34,7 @@ function initApp() {
     userStore: useUserStoreHook(),
     routeStore: useRouteStoreHook(),
     tagViewStore: useTagViewStoreHook(),
-    themeStore: useThemeStoreHook(),
+    themeStore: themeManager,
   }
   setDisplayRoutes(stores)
   setupTheme(stores)

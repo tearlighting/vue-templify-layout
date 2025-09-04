@@ -4,7 +4,11 @@ import Aside from "@/components/Aside/index.vue"
 import NavBar from "@/components/NavBar/index.vue"
 import TagViews from "@/components/TagViews/index.vue"
 import { useRouteStore } from "@/store"
+import { usePageHostStore } from "@/store/pageHost"
+import { storeToRefs } from "pinia"
+
 const { currentRoute } = useRouteStore()
+const { hostRef } = storeToRefs(usePageHostStore())
 </script>
 
 <template>
@@ -18,10 +22,14 @@ const { currentRoute } = useRouteStore()
     <template v-slot:centerLine2>
       <TagViews></TagViews>
     </template>
-    <KeepAlive v-if="currentRoute.meta?.keepAlive">
-      <RouterView></RouterView>
-    </KeepAlive>
-    <RouterView></RouterView>
+    <div role="page-host " class="size-full overflow-auto bg-bg" ref="hostRef">
+      <RouterView v-slot="{ Component }">
+        <KeepAlive v-if="currentRoute.meta?.keepAlive">
+          <component :is="Component" />
+        </KeepAlive>
+        <component v-else :is="Component" />
+      </RouterView>
+    </div>
   </PanelContainer>
 </template>
 

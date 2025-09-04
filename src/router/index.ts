@@ -1,16 +1,17 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 import DefaultLayout from "@/layout/DefaultLayout.vue"
-
 import { EPemission } from "@/constants"
 import { EIcons } from "@/constants/icons"
 import Dashboard from "@/views/dashboard/index.vue"
 import Menu12 from "@/views/menu/menu12/index.vue"
 import Menu111 from "@/views/menu/menu111/index.vue"
+import { useLanguage } from "@/hooks/useLanguage"
 
+const { t } = useLanguage()
 /**
  * 设计的就是具名路由
  */
-const path = "https://element-plus-admin-doc.cn/"
+
 export const routes: RouteRecordRaw[] = [
   {
     path: "/",
@@ -28,8 +29,8 @@ export const routes: RouteRecordRaw[] = [
     component: DefaultLayout,
     children: [
       {
-        name: "Login1",
-        path,
+        name: "Login",
+        path: "",
         components: Dashboard,
         meta: {
           roles: [EPemission.visitor],
@@ -51,9 +52,8 @@ export const routes: RouteRecordRaw[] = [
         path: "",
         name: "Dashboard",
         component: Dashboard,
-
         meta: {
-          title: "Dashboard",
+          title: t("router.dashboard"),
           roles: [EPemission.visitor],
           icon: EIcons.Dashboard,
         },
@@ -66,7 +66,7 @@ export const routes: RouteRecordRaw[] = [
     redirect: "/level/menu1/menu1-1/menu1-1-1",
     name: "Level",
     meta: {
-      title: "router.level",
+      title: t("router.level"),
       icon: EIcons.Home,
       roles: [EPemission.visitor],
     },
@@ -76,7 +76,7 @@ export const routes: RouteRecordRaw[] = [
         name: "Menu1",
         redirect: "/level/menu1/menu1-1/menu1-1-1",
         meta: {
-          title: "router.menu1",
+          title: t("router.level.menu1"),
           roles: [EPemission.visitor],
           icon: EIcons.MenuOpen,
         },
@@ -86,7 +86,7 @@ export const routes: RouteRecordRaw[] = [
             name: "Menu11",
             redirect: "/level/menu1/menu1-1/menu1-1-1",
             meta: {
-              title: "router.menu11",
+              title: t("router.level.menu1.menu11"),
               alwaysShow: true,
               roles: [EPemission.visitor],
             },
@@ -96,7 +96,7 @@ export const routes: RouteRecordRaw[] = [
                 name: "Menu111",
                 component: Menu111,
                 meta: {
-                  title: "router.menu111",
+                  title: t("router.level.menu1.menu11.menu111"),
                   roles: [EPemission.visitor],
                 },
               },
@@ -107,7 +107,7 @@ export const routes: RouteRecordRaw[] = [
             name: "Menu12",
             component: Menu12,
             meta: {
-              title: "router.menu12",
+              title: t("router.level.menu1.menu12"),
               roles: [EPemission.visitor],
             },
           },

@@ -21,7 +21,7 @@ const sizeClass = computed(() => sizes[props.size ?? "md"])
 <template>
   <button
     type="button"
-    class="flex items-center justify-center rounded-md transition-colors bg-transparent hover:bg-surface hover:text-primary active:bg-primary active:text-text-invert border-0 outline-none hover: cursor-pointer"
+    class="flex items-center justify-center rounded-md transition-colors bg-transparent hover:bg-surface hover:text-primary active:bg-primary active:text-invert border-0 outline-none hover: cursor-pointer"
     :class="clsx(sizeClass, props.class)"
     :title="props.title"
     role="controller-container"

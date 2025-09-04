@@ -10,6 +10,8 @@
     "erasableSyntaxOnly": false,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],

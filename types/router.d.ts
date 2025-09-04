@@ -20,7 +20,6 @@ type TTemplifyRouteMeta = BaseMeta & (RequireTitleIfHidden<true> | RequireTitleI
 interface ITemplifyRouteMeta extends TTemplifyRouteMeta {}
 declare module "vue-router" {
   interface RouteMeta extends BaseMeta {}
-  const r: RouteMeta = {}
 }
 
 export interface IRouteGuarder {

@@ -17,12 +17,7 @@ export type Palette = {
   danger: string
   bg: string
   text: string
-
   surface: string // 浮层 / 卡片背景
   border: string // 边框
   muted: string // 次要文字
-}
-
-export interface IThemeInitelizer {
-  apply: (core: IThemeManager) => void
 }

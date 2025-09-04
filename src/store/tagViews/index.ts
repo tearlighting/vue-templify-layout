@@ -13,8 +13,6 @@ export const useTagViewStore = defineStore("tagView", () => {
     return currentTagName.value === name
   }
   function addTag(name: string) {
-    console.log("add")
-
     tags.value.add(name)
   }
 

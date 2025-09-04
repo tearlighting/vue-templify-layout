@@ -15,7 +15,7 @@ const { push } = useRouter()
 
 <template>
   <div role="tag-views" class="w-full flex items-center justify-start gap-2 border-b-1 border-b-border">
-    <Tag v-for="name of allTags" :key="name" :class="clsx(tagViewStore.isCurrent(name) ? 'bg-primary/50! text-primary! border-primary!' : '', 'my-1.5 first:ml-10')" @click="() => push({ name })">
+    <Tag v-for="name of allTags" :key="name" class="my-1.5 first:ml-10" :class="clsx(tagViewStore.isCurrent(name) ? 'bg-primary/10! text-primary! border-primary!' : '')" @click="() => push({ name })">
       {{ getMeta(routes, name)?.title }}
       <template #footer>
         <SvgIcon :name="EIcons.Close" @click="() => tagViewStore.deleteTag(name)" />
