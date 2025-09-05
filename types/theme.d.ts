@@ -1,3 +1,5 @@
+import type { en } from "@/locale"
+import { NestedKeys } from "language"
 export type ThemeVars = Record<string, string>
 
 export interface IThemeManager<ThemeName extends string> {
@@ -21,3 +23,18 @@ export type Palette = {
   border: string // 边框
   muted: string // 次要文字
 }
+
+export type ThemeLabel =
+  | {
+      labelKey?: never
+      label: string
+    }
+  | {
+      labelKey: NestedKeys<typeof en>
+      label?: never
+    }
+
+export type ThemeItem<TKey extends string> = {
+  value: TKey
+  palette: Palette
+} & ThemeLabel

@@ -12,5 +12,9 @@
         "menu12": "菜单1-2"
       }
     }
+  },
+  "theme": {
+    "dark": "dark",
+    "light": "light"
   }
 }

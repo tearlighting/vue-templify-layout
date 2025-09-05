@@ -1,12 +1,17 @@
+import { createMenuManager } from "@/utils"
 import { defineStore } from "pinia"
-import { reactive } from "vue"
-import { createMenuController } from "./tools"
+import { ref } from "vue"
 import pinia from "../store"
 
+export const menuManager = createMenuManager()
+
 export const useMenuStore = defineStore("menu", () => {
-  const menuController = reactive(createMenuController())
+  const isCollapse = ref(menuManager.isCollapsed())
+  const isHidden = ref(menuManager.isHidden())
+
   return {
-    menuController,
+    isCollapse,
+    isHidden,
   }
 })
 

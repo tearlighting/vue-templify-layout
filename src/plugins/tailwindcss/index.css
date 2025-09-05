@@ -5,7 +5,6 @@
   --color-bg: var(--color-bg); /* bg-bg → 页面背景 */
   --color-surface: var(--color-surface); /* bg-surface → 浮层/卡片背景 */
   --color-border: var(--color-border); /* border-border → 边框 */
-
   /* ===== 文字颜色 ===== */
   --color-text: var(--color-text); /* text-text → 主文字 */
   --color-muted: var(--color-muted); /* text-muted → 次要文字 */
@@ -20,17 +19,17 @@
   --color-danger: var(--color-danger); /* text-danger → 错误状态 */
 
   /* ===== 按钮 ===== */
-  --btn-bg: var(--btn-bg); /* bg-btn-bg → 按钮背景 */
-  --btn-text: var(--btn-text); /* text-btn-text → 按钮文字 */
-  --btn-hover: var(--btn-hover); /* hover:bg-btn-hover → 悬停背景 */
+  --color-btn-bg: var(--btn-bg); /* bg-btn-bg → 按钮背景 */
+  --color-btn-text: var(--btn-text); /* text-btn-text → 按钮文字 */
+  --color-btn-hover: var(--btn-hover); /* hover:bg-btn-hover → 悬停背景 */
 
   /* ===== 卡片 ===== */
-  --card-bg: var(--card-bg); /* bg-card-bg → 卡片背景 */
-  --card-border: var(--card-border); /* border-card-border → 卡片边框 */
+  --color-card-bg: var(--card-bg); /* bg-card-bg → 卡片背景 */
+  --color-card-border: var(--card-border); /* border-card-border → 卡片边框 */
 
   /* ===== 输入框 ===== */
-  --input-bg: var(--input-bg); /* bg-input-bg → 输入框背景 */
-  --input-border: var(--input-border); /* border-input-border → 输入框边框 */
-  --input-text: var(--input-text); /* text-input-text → 输入框文字 */
-  --input-focus: var(--input-focus); /* focus:border-input-focus → 聚焦时边框 */
+  --color-input-bg: var(--input-bg); /* bg-input-bg → 输入框背景 */
+  --color-input-border: var(--input-border); /* border-input-border → 输入框边框 */
+  --color-input-text: var(--input-text); /* text-input-text → 输入框文字 */
+  --color-input-focus: var(--input-focus); /* focus:border-input-focus → 聚焦时边框 */
 }

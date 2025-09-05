@@ -1,9 +1,10 @@
 import { generateTheme } from "@/utils"
-import type { IThemeManager, Palette, ThemeVars } from "theme"
+import type { IThemeManager, ThemeItem, ThemeLabel, ThemeVars } from "theme"
 
 export class ThemeManager<ThemeName extends string = never> implements IThemeManager<ThemeName> {
   private _themes: Record<ThemeName, ThemeVars> = {} as any
   private _current: ThemeName | null = null
+  private _labels: Record<ThemeName, ThemeLabel> = {} as any
   constructor(private _rootEl: HTMLElement = document.documentElement) {}
 
   getTheme(): ThemeVars {
@@ -22,12 +23,16 @@ export class ThemeManager<ThemeName extends string = never> implements IThemeMan
     this._current = name
     this.applyTheme(this._themes[name])
   }
-  register<T extends string>(name: T, palette: Palette) {
+  register<T extends string>({ value, palette, label, labelKey }: ThemeItem<T>) {
     const theme = generateTheme(palette)
     const that = this as ThemeManager<ThemeName | T>
-    that._themes[name] = theme
+    that._themes[value] = theme
+    that._labels[value] = {
+      label,
+      labelKey,
+    } as any
     if (!this._current) {
-      that._current = name
+      that._current = value
       that.applyTheme(theme)
     }
     return that
@@ -42,6 +47,16 @@ export class ThemeManager<ThemeName extends string = never> implements IThemeMan
 
   importTheme(vars: ThemeVars): void {
     this._themes[this._current!] = vars
+  }
+
+  get themes() {
+    return Object.keys(this._labels).map((item) => {
+      const value = item as ThemeName
+      return {
+        value,
+        ...this._labels[value],
+      }
+    })
   }
 }
 

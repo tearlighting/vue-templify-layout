@@ -1,25 +1,28 @@
-import { NavigationGuardWithThis } from "vue-router"
+import { NavigationGuardWithThis, RouteRecordRaw } from "vue-router"
 import { EPemission } from "@/store/pemission"
 import type { EIcons } from "@/constants/icons"
+import type { en } from "@/locale"
+import { NestedKeys } from "language"
 
 type BaseMeta = {
   keepAlive?: boolean
   roles: EPemission[]
-  /**
-   * 自控制自己的显示，children 不会受影响,会继续递归
-   */
-  hidden?: boolean
   icon?: EIcons
   exact?: boolean
   externalLink?: string
 }
-type RequireTitleIfHidden<T extends boolean> = T extends true ? { hidden: true } : { hidden: false; title: string }
 
-type TTemplifyRouteMeta = BaseMeta & (RequireTitleIfHidden<true> | RequireTitleIfHidden<false>)
+type TI18nSetting = { title: string; titleKey?: never } | { title?: never; titleKey: NestedKeys<typeof en> }
 
-interface ITemplifyRouteMeta extends TTemplifyRouteMeta {}
-declare module "vue-router" {
-  interface RouteMeta extends BaseMeta {}
+type TRouteHidden = { hidden: true }
+
+export type TRouteShow = { hidden?: false } & TI18nSetting
+
+export type StrictMeta = BaseMeta & (TRouteHidden | TRouteShow)
+
+export type AppRoute = Omit<RouteRecordRaw, "meta" | "children"> & {
+  meta: StrictMeta
+  children?: AppRoute[]
 }
 
 export interface IRouteGuarder {

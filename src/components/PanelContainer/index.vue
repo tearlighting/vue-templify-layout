@@ -9,10 +9,14 @@ interface ISlots {
 }
 
 defineSlots<ISlots>()
+
+defineProps<{
+  class?: string
+}>()
 </script>
 
 <template>
-  <div class="flex h-screen" role="presentation" data-section="layout-root">
+  <div class="flex h-screen" :class="class" role="presentation" data-section="layout-root">
     <!-- 左侧栏 -->
     <aside class="w-fit flex-shrink-0" role="complementary" data-section="left">
       <slot name="left" />

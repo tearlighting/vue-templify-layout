@@ -18,7 +18,7 @@ defineProps<IProps>()
 
 <template>
   <ControllerContainer>
-    <SvgIcon v-if="showThemeSwitch" :name="EIcons.User" :class="svgClass"></SvgIcon>
+    <SvgIcon v-if="showThemeSwitch" :name="EIcons.User" :class="svgClass" class="text-text"></SvgIcon>
   </ControllerContainer>
 </template>
 

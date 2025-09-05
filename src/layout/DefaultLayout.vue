@@ -12,7 +12,7 @@ const { hostRef } = storeToRefs(usePageHostStore())
 </script>
 
 <template>
-  <PanelContainer>
+  <PanelContainer class="text-text/90 bg-bg">
     <template v-slot:left>
       <Aside></Aside>
     </template>
@@ -22,7 +22,7 @@ const { hostRef } = storeToRefs(usePageHostStore())
     <template v-slot:centerLine2>
       <TagViews></TagViews>
     </template>
-    <div role="page-host " class="size-full overflow-auto bg-bg" ref="hostRef">
+    <div role="page-host " class="size-full overflow-auto bg-bg text-text" ref="hostRef">
       <RouterView v-slot="{ Component }">
         <KeepAlive v-if="currentRoute.meta?.keepAlive">
           <component :is="Component" />

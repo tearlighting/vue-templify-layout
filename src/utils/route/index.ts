@@ -1,6 +1,7 @@
 import type { RouteLocationNormalizedGeneric, RouteRecordRaw } from "vue-router"
 import { bfs } from "../tree"
 export * from "./guard"
+import type { AppRoute } from "router"
 
 interface INamedRoute {
   name: string
@@ -48,6 +49,10 @@ function existsInDisplayRoutes(routes: RouteRecordRaw[], name: string): boolean 
   return res
 }
 export function getMeta(routes: RouteRecordRaw[], currentRouteName: string) {
-  const route = findRoute(routes as any, currentRouteName!) as unknown as RouteRecordRaw
+  const route = findRoute(routes as any, currentRouteName!) as unknown as AppRoute
   return route?.meta
+}
+
+export function createRoutes<T extends AppRoute[]>(routes: T): RouteRecordRaw[] {
+  return routes as RouteRecordRaw[]
 }

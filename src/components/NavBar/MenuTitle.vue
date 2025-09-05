@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useLanguage } from "@/hooks/useLanguage"
 import { useAppStore } from "@/store/app"
 import { useRouteStore } from "@/store/route"
 import { storeToRefs } from "pinia"
@@ -6,16 +7,15 @@ import { storeToRefs } from "pinia"
 interface IProps {
   class?: string
 }
-const props = defineProps<IProps>()
-const {
-  settings: { showTitle },
-} = useAppStore()
-const routeStore = useRouteStore()
-const { currentRoute } = storeToRefs(routeStore)
+defineProps<IProps>()
+
+const { settings } = useAppStore()
+const { currentRoute } = storeToRefs(useRouteStore())
+const { getMenuTitle } = useLanguage()
 </script>
 
 <template>
-  <nav v-if="showTitle" v-bind="props" role="menu-title">{{ currentRoute.meta?.title }}</nav>
+  <nav v-if="settings.showTitle" :class="class" role="menu-title">{{ getMenuTitle({ meta: currentRoute.meta! }) }}</nav>
 </template>
 
 <style lang="less" scoped></style>

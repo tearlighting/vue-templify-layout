@@ -1,38 +1,26 @@
 <script setup lang="ts">
-import { useRouteStore } from "@/store/route"
+import { useMenuStore, useRouteStore } from "@/store"
 import { ElMenu, type MenuInstance } from "element-plus"
 import MenuItem from "./MenuItem.vue"
 import { storeToRefs } from "pinia"
-import { useMenuStore } from "@/store/menu"
 import { onMounted, ref } from "vue"
 import { useRouter } from "vue-router"
 
-const routeStore = useRouteStore()
-
-const { displayRoutes } = storeToRefs(routeStore)
-
-const { menuController } = useMenuStore()
+const { displayRoutes, currentRoute } = storeToRefs(useRouteStore())
+const { push } = useRouter()
+const { isCollapse, isHidden } = storeToRefs(useMenuStore())
 
 const menuRef = ref<MenuInstance>()
 onMounted(() => {
-  const { currentRoute } = routeStore
-  currentRoute.name && menuRef.value?.updateActiveIndex(currentRoute.name)
+  currentRoute.value.name && menuRef.value?.updateActiveIndex(currentRoute.value.name)
 })
-const { push } = useRouter()
 </script>
 
 <template>
-  <div class="md: w-60 h-full">
-    <el-menu
-      ref="menuRef"
-      class="h-full"
-      :collapse="menuController.isCollapsed()"
-      :hidden="menuController.isHidden()"
-      @select="(name) => push({ name })"
-      :default-active="routeStore.currentRoute.name!"
-    >
+  <div class="h-full transition-all duration-300" :class="!isCollapse && !isHidden ? '' : ''">
+    <el-menu ref="menuRef" class="h-full bg-bg! md:w-60 border-r-border!" :collapse="isCollapse" :hidden="isHidden" @select="(name) => push({ name })" :default-active="currentRoute.name!">
       <template v-for="item in displayRoutes">
-        <menu-item :routes="item" />
+        <menu-item :routeItem="<any>item" />
       </template>
     </el-menu>
   </div>

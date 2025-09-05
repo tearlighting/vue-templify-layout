@@ -1,6 +1,6 @@
-import { languageGlueIns } from "@/store"
+import { languageManager } from "@/store"
 import type { IAddPlugin } from "plugin"
 
 export const add18n: IAddPlugin = (app) => {
-  app.use(languageGlueIns.managerIns)
+  app.use(languageManager.managerIns)
 }

@@ -9,7 +9,7 @@ const breakpoints: Record<EAppSize, string> = {
   [EAppSize.BASE]: "(min-width: 0px)",
 }
 export function getDevice(): EAppSize {
-  return isSize(EAppSize.SMALL) || isSize(EAppSize.MEDIUM) || isSize(EAppSize.LARGE) || isSize(EAppSize.XLARGE) || isSize(EAppSize.XXLARGE) || EAppSize.BASE
+  return isSize(EAppSize.XXLARGE) || isSize(EAppSize.XLARGE) || isSize(EAppSize.LARGE) || isSize(EAppSize.MEDIUM) || isSize(EAppSize.SMALL) || EAppSize.BASE
 }
 
 const isSize = (size: EAppSize) => {

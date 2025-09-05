@@ -15,6 +15,9 @@ export class MenuController {
   toggleCollapse() {
     this._state = this._state === EMenuState.COLLAPSED ? EMenuState.EXPANDED : EMenuState.COLLAPSED
   }
+  toggleHidden() {
+    this._state = this._state === EMenuState.HIDDEN ? EMenuState.EXPANDED : EMenuState.HIDDEN
+  }
 
   // 显示菜单
   show() {
@@ -45,4 +48,4 @@ export class MenuController {
   }
 }
 
-export const createMenuController = (initial: EMenuState = EMenuState.EXPANDED) => new MenuController(initial)
+export const createMenuManager = (initial: EMenuState = EMenuState.EXPANDED) => new MenuController(initial)

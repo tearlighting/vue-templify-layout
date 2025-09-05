@@ -3,14 +3,15 @@ import { reactive, ref } from "vue"
 import pinia from "../store"
 import { routes } from "@/router"
 import { transformRoute } from "./tools"
-import type { RouteMeta, RouteRecordRaw } from "vue-router"
+import type { RouteRecordRaw } from "vue-router"
 import { getMeta } from "@/utils"
+import type { StrictMeta } from "router"
 
 export const useRouteStore = defineStore("route", () => {
   const displayRoutes = ref<RouteRecordRaw[]>([])
   const currentRoute = reactive({
     name: null as string | null,
-    meta: null as RouteMeta | null,
+    meta: null as StrictMeta | null,
   })
   function isCurrent(name: string) {
     return name === currentRoute.name
