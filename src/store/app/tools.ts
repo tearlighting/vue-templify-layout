@@ -1,4 +1,4 @@
-import { EAppSize } from "@/constants/app"
+import { EAppSize, EDeviceType } from "@/constants/app"
 
 const breakpoints: Record<EAppSize, string> = {
   [EAppSize.SMALL]: "(min-width: 640px)",
@@ -15,6 +15,14 @@ export function getDevice(): EAppSize {
 const isSize = (size: EAppSize) => {
   if (window.matchMedia(breakpoints[size]).matches) {
     return size
+  }
+}
+
+export const getDeviceType = (size: EAppSize) => {
+  if ([EAppSize.SMALL, EAppSize.BASE].includes(size)) {
+    return EDeviceType.MOBILE
+  } else {
+    return EDeviceType.DESKTOP
   }
 }
 

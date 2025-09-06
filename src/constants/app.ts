@@ -6,3 +6,8 @@ export const enum EAppSize {
   XXLARGE = "2xl", // ≥1536px
   BASE = "base", // <640px
 }
+
+export const enum EDeviceType {
+  MOBILE = "mobile",
+  DESKTOP = "desktop",
+}
