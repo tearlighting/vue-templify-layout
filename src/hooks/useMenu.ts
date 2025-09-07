@@ -4,13 +4,12 @@ import { storeToRefs } from "pinia"
 
 export const useMenu = () => {
   const { deviceType } = storeToRefs(useAppStoreHook())
-  const { isCollapse, isHidden } = storeToRefs(useMenuStoreHook())
+  const { syncMenuInfo } = useMenuStoreHook()
 
   function toggleMenu() {
     if (deviceType.value === EDeviceType.MOBILE) menuManager.toggleHidden()
     else menuManager.toggleCollapse()
-    isCollapse.value = menuManager.isCollapsed()
-    isHidden.value = menuManager.isHidden()
+    syncMenuInfo() // 同步菜单信息
   }
 
   return {

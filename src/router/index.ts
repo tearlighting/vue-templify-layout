@@ -1,14 +1,11 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 import DefaultLayout from "@/layout/DefaultLayout.vue"
 import { EPemission } from "@/constants"
 import { EIcons } from "@/constants/icons"
-import Dashboard from "@/views/dashboard/index.vue"
-import Menu12 from "@/views/menu/menu12/index.vue"
-import Menu111 from "@/views/menu/menu111/index.vue"
 import { createRoutes } from "@/utils"
 
 /**
- * 设计的就是具名路由
+ * 设计的就是具名路由,想要keepAlive的话,组件里面必须同步设置name,否则无法生效
  */
 
 export const routes = createRoutes([
@@ -34,7 +31,7 @@ export const routes = createRoutes([
       {
         name: "Login",
         path: "",
-        components: Dashboard,
+        component: () => import("@/views/dashboard/index.vue"),
         meta: {
           hidden: true,
           roles: [EPemission.visitor],
@@ -53,9 +50,9 @@ export const routes = createRoutes([
       {
         path: "",
         name: "Dashboard",
-        component: Dashboard,
+        component: () => import("@/views/dashboard/index.vue"),
         meta: {
-          // title: t("router.dashboard"),
+          keepAlive: true,
           titleKey: "router.dashboard",
           roles: [EPemission.visitor],
           icon: EIcons.Dashboard,
@@ -97,7 +94,7 @@ export const routes = createRoutes([
               {
                 path: "menu1-1-1",
                 name: "Menu111",
-                component: Menu111,
+                component: () => import("@/views/menu/menu111/index.vue"),
                 meta: {
                   // title: t("router.level.menu1.menu11.menu111"),
                   titleKey: "router.level.menu1.menu11.menu111",
@@ -109,7 +106,7 @@ export const routes = createRoutes([
           {
             path: "menu1-2",
             name: "Menu12",
-            component: Menu12,
+            component: () => import("@/views/menu/menu12/index.vue"),
             meta: {
               // title: t("router.level.menu1.menu12"),
               titleKey: "router.level.menu1.menu12",
@@ -124,7 +121,7 @@ export const routes = createRoutes([
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes: routes as RouteRecordRaw[],
 })
 
 export default router

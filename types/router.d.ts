@@ -21,6 +21,9 @@ export type TRouteShow = { hidden?: false } & TI18nSetting
 export type StrictMeta = BaseMeta & (TRouteHidden | TRouteShow)
 
 export type AppRoute = Omit<RouteRecordRaw, "meta" | "children"> & {
+  /**
+   * 路由元信息
+   */
   meta: StrictMeta
   children?: AppRoute[]
 }

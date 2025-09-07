@@ -1,10 +1,10 @@
-import type { RouteRecordRaw } from "vue-router"
 import { createTransformMiddleWare } from "@/utils"
 import { EPemission } from "@/constants"
 import { useUserStoreHook } from "../user"
 import { storeToRefs } from "pinia"
+import type { AppRoute } from "router"
 
-function filterHiddenRoutes(routes: RouteRecordRaw[]): RouteRecordRaw[] {
+function filterHiddenRoutes(routes: AppRoute[]): AppRoute[] {
   const res = []
   for (let route of routes) {
     if (!route.meta?.hidden) {
@@ -22,7 +22,7 @@ function filterHiddenRoutes(routes: RouteRecordRaw[]): RouteRecordRaw[] {
   return res
 }
 
-function filterAccessRoutes(routes: RouteRecordRaw[], pemission: EPemission): RouteRecordRaw[] {
+function filterAccessRoutes(routes: AppRoute[], pemission: EPemission): AppRoute[] {
   const res = []
   for (let route of routes) {
     if (route.meta?.roles?.includes(pemission)) {
@@ -36,10 +36,10 @@ function filterAccessRoutes(routes: RouteRecordRaw[], pemission: EPemission): Ro
   return res
 }
 
-function filterAccessRoutesWithUserInfo(routes: RouteRecordRaw[]) {
+function filterAccessRoutesWithUserInfo(routes: AppRoute[]) {
   const { userInfo } = storeToRefs(useUserStoreHook())
   const pemission = userInfo.value.role
   return filterAccessRoutes(routes, pemission)
 }
 
-export const transformRoute = createTransformMiddleWare<RouteRecordRaw[]>().use(filterHiddenRoutes).use(filterAccessRoutesWithUserInfo)
+export const transformRoute = createTransformMiddleWare<AppRoute[]>().use(filterHiddenRoutes).use(filterAccessRoutesWithUserInfo)

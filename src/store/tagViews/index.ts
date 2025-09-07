@@ -1,19 +1,24 @@
 import { defineStore } from "pinia"
 import { ref, computed } from "vue"
-import router from "@/router"
+import router, { routes } from "@/router"
 import pinia from "../store"
+import { getMeta } from "@/utils"
 
 export const useTagViewStore = defineStore("tagView", () => {
   /**
    * 存的是route的name
    */
   const tags = ref(new Set<string>())
-  let currentTagName = ref<string | null>(null)
+  const currentTagName = ref<string | null>(null)
+
+  const cachedTags = ref(new Set<string>())
   const isCurrent = (name: string) => {
     return currentTagName.value === name
   }
   function addTag(name: string) {
     tags.value.add(name)
+    const { keepAlive } = getMeta(routes, name)
+    keepAlive && cachedTags.value.add(name)
   }
 
   function deleteTag(name: string) {
@@ -34,6 +39,7 @@ export const useTagViewStore = defineStore("tagView", () => {
     }
 
     tags.value.delete(name)
+    cachedTags.value.has(name) && cachedTags.value.delete(name)
   }
   function setCurrent(payload: string) {
     currentTagName.value = payload
@@ -42,12 +48,15 @@ export const useTagViewStore = defineStore("tagView", () => {
 
   const allTags = computed(() => Array.from(tags.value))
 
+  const allCachedTags = computed(() => Array.from(cachedTags.value))
+
   return {
     addTag,
     deleteTag,
     allTags,
     isCurrent,
     setCurrent,
+    allCachedTags,
   }
 })
 

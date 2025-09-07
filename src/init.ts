@@ -1,6 +1,7 @@
 import { watch } from "vue"
-import { useRouteStoreHook, useTagViewStoreHook, themeManager, useUserStoreHook, useAppStoreHook } from "./store"
+import { useRouteStoreHook, useTagViewStoreHook, themeManager, useUserStoreHook, useAppStoreHook, useMenuStoreHook, menuManager } from "./store"
 import { setupRouteGuard } from "./router/behavior"
+import { EDeviceType } from "./constants"
 
 export interface IAllStoreProps {
   userStore: ReturnType<typeof useUserStoreHook>
@@ -8,6 +9,7 @@ export interface IAllStoreProps {
   tagViewStore: ReturnType<typeof useTagViewStoreHook>
   themeStore: typeof themeManager
   appStore: ReturnType<typeof useAppStoreHook>
+  menuStore: ReturnType<typeof useMenuStoreHook>
 }
 /**
  * 注入主题
@@ -30,11 +32,16 @@ function setDisplayRoutes<T extends IAllStoreProps>({ userStore, routeStore }: T
   )
 }
 
-function changeMenuType<T extends IAllStoreProps>({ appStore }: T) {
+function changeMenuType<T extends IAllStoreProps>({ appStore, menuStore }: T) {
   watch(
-    () => appStore.device,
+    () => appStore.deviceType,
     () => {
-      console.log(appStore.device)
+      if (appStore.deviceType === EDeviceType.MOBILE) {
+        menuManager.hide()
+      } else {
+        menuManager.show()
+      }
+      menuStore.syncMenuInfo()
     },
     {
       immediate: true,
@@ -43,12 +50,13 @@ function changeMenuType<T extends IAllStoreProps>({ appStore }: T) {
 }
 
 function initApp() {
-  const stores = {
+  const stores: IAllStoreProps = {
     userStore: useUserStoreHook(),
     routeStore: useRouteStoreHook(),
     tagViewStore: useTagViewStoreHook(),
     themeStore: themeManager,
     appStore: useAppStoreHook(),
+    menuStore: useMenuStoreHook(),
   }
   setDisplayRoutes(stores)
   setupTheme(stores)
