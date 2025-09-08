@@ -1,4 +1,4 @@
-import type { en } from "@/locale"
+import type { en } from "@/constants/locale"
 import { NestedKeys } from "language"
 export type ThemeVars = Record<string, string>
 

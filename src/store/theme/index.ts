@@ -1,4 +1,4 @@
-import { darkPalette, lightPalette } from "@/constants"
+import { darkPalette, lightPalette, pastelPalette, neonPalette, forestPalette } from "@/constants"
 import { createThemeManager } from "@/utils"
 import { defineStore } from "pinia"
 import { ref } from "vue"
@@ -14,6 +14,23 @@ export const themeManager = createThemeManager()
     value: "dark",
     palette: darkPalette,
     labelKey: "theme.dark",
+  })
+
+  .register({
+    value: "pastel",
+    palette: pastelPalette,
+    labelKey: "theme.pastel",
+  })
+
+  .register({
+    value: "neon",
+    palette: neonPalette,
+    labelKey: "theme.neon",
+  })
+  .register({
+    value: "forest",
+    palette: forestPalette,
+    labelKey: "theme.forest",
   })
 
 export const useThemeStore = defineStore("theme", () => {

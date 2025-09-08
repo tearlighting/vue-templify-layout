@@ -6,6 +6,8 @@ import ControllerContainer from "./ControllerContainer.vue"
 import { useLanguage } from "@/hooks/useLanguage"
 import { useThemeStore } from "@/store"
 import { storeToRefs } from "pinia"
+import { ElDropdown, ElDropdownMenu, ElDropdownItem } from "element-plus"
+
 interface IProps {
   svgClass?: string
 }

@@ -1,6 +1,6 @@
 {
   "router": {
-    "dashboard": "ダッシュボード",
+    "dashboard": "看板",
     "level": {
       "_": "多级菜单",
       "menu1": {
@@ -15,6 +15,9 @@
   },
   "theme": {
     "dark": "暗黑",
-    "light": "明亮"
+    "light": "明亮",
+    "pastel": "马卡龙",
+    "forest": "森林",
+    "neon": "赛博朋克"
   }
 }

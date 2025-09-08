@@ -1,5 +1,5 @@
 import { createLanguageCore, createLanguageManager, createLanguageManagerGlue } from "@/utils"
-import { zh, en, jp } from "@/locale"
+import { zh, en, jp } from "@/constants/locale"
 import { defineStore } from "pinia"
 import { ref } from "vue"
 import pinia from "../store"
