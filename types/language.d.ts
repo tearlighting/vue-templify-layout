@@ -8,8 +8,6 @@ export type NestedKeys<T, P extends string = ""> =
 
 type AddPrefix<T extends string, P extends string> = P extends "" ? T : `${P}.${T}`
 
-type FilterI18nKey<T extends string> = T extends `${infer R}` ? R : never
-
 export interface ILanguageItem<TKey extends string, TMessage extends Record<string, any>> {
   value: TKey
   message: TMessage
